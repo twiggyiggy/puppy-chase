@@ -21,16 +21,21 @@ Can restart game.
 - Sprite animations
 - Audio effects on events
 - Bg music
+- instructions screen
 
 ##Data structure
-Classes 
+Classes + properties + methods:
+- Player: x, y, direction, color, speed, width, height, lives, ctx, canvas, move(), draw(), updateLives();
+- Puppy: x, y, direction, color, speed, width, height, ctx, canvas, move(), draw(), eliminatePuppy();
+- Enemy: x, y, direction, color, speed, width, height, ctx, canvas, move(), draw(), eliminateEnemy();
+- Game: player, enemies, puppies, isGameOver, score, checkLives(), 
+checkCollisions(), startGame(), clear(), update(), draw()
 
 ##States y States Transitions
 
--Splash Screen
--Instructions Screen
+-Splash Screen - buttons: start
 -Game Screen
--Game-over Screen
+-Game-over Screen - buttons: main menu
 
 
 ##Task
