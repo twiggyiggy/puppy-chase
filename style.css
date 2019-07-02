@@ -69,8 +69,11 @@ p {
 }
 
 .canvas {
-  border: 3px solid rgba(255,83,94,0.2);
+  border: 3px solid rgba(255,83,94,0.7);
   margin: 100px;
+  background-color: lightgrey;
+  display: flex;
+  align-self: center;
 }
 
 .splash-screen {
@@ -79,6 +82,12 @@ p {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.game-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .game-over-screen {

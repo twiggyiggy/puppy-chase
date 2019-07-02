@@ -11,10 +11,10 @@ function main() {
   function createSplashScreen() {
     var splashSrceen = buildDom(`
       <section class="splash-screen">
-        <h1>PUPPY CHASE!</h1>
-        <button>Let's Chase Some Puppies!</button>
+        <h1>PUPPY CHASE 3</h1>
+        <button>Chase Some Puppies!</button>
       </section>
-    `)
+    `)  
 
     var startButton = splashSrceen.querySelector('button');
     startButton.addEventListener('click', createGameScreen);
@@ -22,7 +22,7 @@ function main() {
 
   function createGameScreen() {
     var gameScreen = buildDom(`
-      <section>
+      <section class="game-screen">
         <canvas width="500" height="500" class="canvas"></canvas>
       </section>
     `)
@@ -37,11 +37,11 @@ function main() {
     var gameOverScreen = buildDom(`
     <section class="game-over-screen">
       <h1>Game Over, the puppies are gone!</h1>
-      <button>Play Again</button>
+      <button>Back to Main Menu</button>
     </section>  
     `);
-    var restartButton = document.querySelector('button');
-    restartButton.addEventListener('click', createSplashScreen);
+    var backToMainButton = document.querySelector('button');
+    backToMainButton.addEventListener('click', createSplashScreen);
   };
 
   createSplashScreen();
