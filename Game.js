@@ -1,13 +1,14 @@
 'use strict';
 
 function Game(canvas) {
-  this.player = null;
+  this.player = null; // why null?
   this.enemies = [];
   this.puppies = [];
   this.isGameOver = false;
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
   this.onGameOver = null;
+  this.score = 0;
 }; 
 
 Game.prototype.startGame = function() {
@@ -18,13 +19,20 @@ Game.prototype.startGame = function() {
 
     if(Math.random() > 0.97) {
       var randomX = Math.random() * this.canvas.width - 10;
+      var newPuppy = new Puppy(this.canvas, randomX);
+      this.puppies.push(newPuppy);
+    }
+
+    if(Math.random() > 0.98) {
+      var randomX = Math.random() * this.canvas.width - 10;
       var newEnemy = new Enemy(this.canvas, randomX);
       this.enemies.push(newEnemy);
     }
     this.update();
     this.clear();
     this.draw();
-    this.checkCollisions();
+    this.checkCollisionPuppy();
+    this.checkCollisionEnemy();
     if(!this.isGameOver) {
       window.requestAnimationFrame(loop);
     } else {
@@ -40,6 +48,9 @@ Game.prototype.update = function() {
   this.enemies.forEach(function(enemy) {
     enemy.move();
   })
+  this.puppies.forEach(function(puppy) {
+    puppy.move();
+  })
 };
 
 Game.prototype.clear = function() {
@@ -52,22 +63,41 @@ Game.prototype.draw = function() {
   this.enemies.forEach(function(enemy) {
     enemy.draw();
   })
+  this.puppies.forEach(function(puppy) {
+    puppy.draw();
+  })
 };
+Game.prototype.checkCollisionSides = function(player, fallingElement) {
+  var topBottom = player.y <= fallingElement.y + fallingElement.width;
+  var rightLeft = player.x + player.width >= fallingElement.x;
+  var leftRight = player.x <= fallingElement.x + fallingElement.width;
+  var bottomTop = player.y + player.height >= fallingElement.y;
+  return topBottom && rightLeft && leftRight && bottomTop;
+}
 
-Game.prototype.checkCollisions = function() {
-  this.enemies.forEach((enemy, index) => {
-    var topBottom = this.player.y <= enemy.y + enemy.width;
-    var rightLeft = this.player.x + this.player.width >= enemy.x;
-    var leftRight = this.player.x <= enemy.x + enemy.width;
-    var bottomTop = this.player.y + this.player.height >= enemy.y;
 
-    if(topBottom && rightLeft && leftRight && bottomTop) {
+Game.prototype.checkCollisionEnemy = function() { // declarar antes para DRY?
+  this.enemies.forEach((fallingElement, index) => {
+
+    if(this.checkCollisionSides(this.player, fallingElement)) {
       this.enemies.splice(index, 1);
       this.player.lives--;
-      if(this.player.lives === 0) {
+      console.log(`Lives left: ${this.player.lives}`)
+    if(this.player.lives === 0) {
         this.isGameOver = true;
       }
     }
+  })
+}
+
+Game.prototype.checkCollisionPuppy = function() {
+  this.puppies.forEach((fallingElement, index) => {
+
+    if(this.checkCollisionSides(this.player, fallingElement)) {
+      this.puppies.splice(index, 1);
+      this.score += 100;
+      console.log(`Score: ${this.score}`);
+      }
   })
 }
 

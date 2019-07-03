@@ -22,12 +22,15 @@ function main() {
 
   function createGameScreen() {
     var gameScreen = buildDom(`
-      <section>
+      <section class="canvas-container">
         <canvas width="500" height="500"></canvas>
       </section>
     `)
   
+    var canvasContainer = gameScreen.querySelector('.canvas-container');
     var canvasElement = gameScreen.querySelector('canvas');
+    canvasElement.width = canvasContainer.offsetWidth
+    canvasElement.height = canvasContainer.offsetHeight
     var gameInstance = new Game(canvasElement);
 
     gameInstance.gameOverCallback(createGameOverScreen);
