@@ -16,7 +16,16 @@ function Player(canvas) {
 }
 
 Player.prototype.move = function() {
-  this.x = this.x + this.direction * this.speed;
+  if (this.x < 0) {
+    this.x = 0;
+    this.direction = 0;
+  } else if (this.x + this.width > this.canvas.width) {
+    this.x = this.canvas.width - this.width;
+    this.direction = 0;
+  } else {
+    this.x += this.direction * this.speed;
+  }
+
 };
 
 Player.prototype.draw = function() {
