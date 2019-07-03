@@ -68,17 +68,21 @@ p {
   }
 }
 
-.canvas {
-  border: 3px solid rgba(255,83,94,0.7);
-  margin: 100px;
+canvas {
+  /*width: 100vw;
+  height: 100vh; */
+  border: 8px solid rgba(255,83,94,0.7);
   background-color: lightgrey;
-  display: flex;
-  align-self: center;
+  background-repeat: no-repeat;
+  background-image: url("./pixel-dogs-stock.png"), 
+  url("./park-with-sky.jpg");
+  background-size: cover;
 }
 
+/*
 .splash-screen {
   display: flex;
-  min-height: 500px;
+  height: 100%
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -88,20 +92,23 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 .game-over-screen {
   display: flex;
-  min-height: 500px;
+  height: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-
+*/
 
 /* ---- components ---- */
-
+/*
 .button {
   width: 100%;
   background-color: blue;
@@ -123,3 +130,5 @@ section.testimonials {
 section.testimonials .button {
   margin-bottom: 10px;
 }
+
+*/

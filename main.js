@@ -22,31 +22,43 @@ function main() {
 
   function createGameScreen() {
     var gameScreen = buildDom(`
-      <section class="game-screen">
-        <canvas width="500" height="500" class="canvas"></canvas>
+      <section>
+        <canvas width="500" height="500"></canvas>
       </section>
     `)
-    
-    var canvas = document.querySelector('canvas');
-    //var gameInstance = new Game(canvas);
+  
+    var canvasElement = gameScreen.querySelector('canvas');
+    var gameInstance = new Game(canvasElement);
 
-    setTimeout(createGameOverScreen, 3000);
+    gameInstance.gameOverCallback(createGameOverScreen);
+
+    gameInstance.startGame();
+
+    document.addEventListener('keydown', function(event) {
+      if(event.key === 'ArrowLeft') {
+        gameInstance.player.setDirection(-1);
+      } else if(event.key === 'ArrowRight') {
+        gameInstance.player.setDirection(1);
+      }
+    })
+    //setTimeout(createGameOverScreen, 3000);
   };
 
   function createGameOverScreen() {
     var gameOverScreen = buildDom(`
-    <section class="game-over-screen">
-      <h1>Game Over, the puppies are gone!</h1>
-      <button>Back to Main Menu</button>
-    </section>  
+      <section class="game-over-screen">
+        <h1>Game Over, the puppies are gone!</h1>
+        <button>Back to Main Menu</button>
+      </section>  
     `);
-    var backToMainButton = document.querySelector('button');
+    var backToMainButton = gameOverScreen.querySelector('button');
     backToMainButton.addEventListener('click', createSplashScreen);
   };
 
   createSplashScreen();
 };
 
+window.addEventListener('load', main);
 
 
 
