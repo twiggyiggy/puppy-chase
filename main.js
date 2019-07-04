@@ -23,11 +23,11 @@ function main() {
   function createGameScreen() {
     var gameScreen = buildDom(`
       <section id="score-life">
-        <p id="global-score">Score: 432</p>
+        <p id="global-score">Score: 0</p>
         <p id="lives-left">Lives left: 4</p>
       </section>
       <section>
-        <canvas width="500" height="500"></canvas>
+        <canvas width="676" height="600"></canvas>
       </section>
     `)
 
@@ -41,6 +41,7 @@ function main() {
     document.addEventListener('keydown', function(event) {
       if(event.key === 'ArrowLeft') {
         gameInstance.player.setDirection(-1);
+        //gameInstance.player.img.src = "./images-shia/shia-going-left.png";
       } else if(event.key === 'ArrowRight') {
         gameInstance.player.setDirection(1);
       }
@@ -61,17 +62,5 @@ function main() {
 
   createSplashScreen();
 };
-
-window.addEventListener('load', main);
-
-
-
-
-
-
-
-
-
-
 
 window.addEventListener('load', main);

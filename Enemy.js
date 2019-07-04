@@ -3,15 +3,15 @@
 function Enemy(canvas, randomX) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
-  this.height = 50;
-  this.width = 50;
+  this.height = 40;
+  this.width = 30;
   this.direction = 1;
-  this.speed = 4;
-  this.color = 'brown';
+  this.speed = 5;
+  this.color = 'red';
   this.x = randomX;
   this.y = 0;
-  this.img = new Image();
-  this.img.src = "./images/chiuaua.png"
+  //this.img = new Image();
+  //this.img.src = "./images/chiuaua.png"
 }
 
 Enemy.prototype.move = function() {
@@ -19,24 +19,24 @@ Enemy.prototype.move = function() {
 }
 
 Enemy.prototype.draw = function() {
-  //this.ctx.fillStyle = this.color;
-  //this.ctx.fillRect(this.x, this.y, this.width, this.height);
-  var ctx = this.ctx;
-  ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  this.ctx.fillStyle = this.color;
+  this.ctx.fillRect(this.x, this.y, this.width, this.height);
+  //var ctx = this.ctx;
+  //ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 }
 
 function Puppy(canvas, randomX) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
-  this.height = 50;
-  this.width = 50;
+  this.height = 30;
+  this.width = 20;
   this.direction = 1;
-  this.speed = 3;
-  this.color = 'green';
+  this.speed = 4;
+  this.color = 'pink';
   this.x = randomX;
   this.y = 0;
-  this.img = new Image();
-  this.img.src = "./images/dog.png";
+  //this.img = new Image();
+  //this.img.src = "./images/dog.png";
 }
 
 Puppy.prototype.move = function() {
@@ -44,8 +44,8 @@ Puppy.prototype.move = function() {
 }
 
 Puppy.prototype.draw = function() {
-  //this.ctx.fillStyle = this.color;
-  //this.ctx.fillRect(this.x, this.y, this.width, this.height);
-  var ctx = this.ctx;
-  ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  this.ctx.fillStyle = this.color;
+  this.ctx.fillRect(this.x, this.y, this.width, this.height);
+  //var ctx = this.ctx;
+  //ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 }

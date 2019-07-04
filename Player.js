@@ -3,16 +3,16 @@
 function Player(canvas) {
   this.canvas = canvas;
   this.ctx = canvas.getContext("2d");
-  this.height = 90;
-  this.width = 70;
+  this.height = 80;
+  this.width = 60;
   this.x = this.canvas.width / 2;
   this.y = this.canvas.height - this.height;
-  this.lives = 7;
+  this.lives = 70;
   this.direction = 0;
   this.speed = 4;
   this.color = 'blue';
   this.img = new Image();
-  this.img.src = "./images/shia lebouf.png";
+  this.img.src = "./images/shia/shia-hands-down-cartoon.png";
 }
 
 Player.prototype.move = function() {

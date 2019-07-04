@@ -72,6 +72,11 @@ Game.prototype.draw = function() {
     puppy.draw();
   })
 };
+/*
+function changeToBlue() {
+  this.player.color = 'blue';
+}
+*/
 
 Game.prototype.checkCollisionSides = function(player, fallingElement) {
   var topBottom = player.y <= fallingElement.y + fallingElement.width;
@@ -90,7 +95,11 @@ Game.prototype.checkCollisionEnemy = function() { // declarar antes para DRY?
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.enemies.splice(index, 1);
       this.player.lives--;
-      console.log(`Lives left: ${this.player.lives}`)
+      this.player.color = 'white';
+      setTimeout(() => {
+        this.player.color = 'blue';
+      }, 100);
+      console.log(`Lives left: ${this.player.lives}`);
     if(this.player.lives === 0) {
         this.isGameOver = true;
       }
@@ -106,7 +115,7 @@ Game.prototype.checkCollisionPuppy = function() {
 
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.puppies.splice(index, 1);
-      this.score += 100;
+      this.score += 15;
       console.log(`Score: ${this.score}`);
       }
   })
@@ -120,4 +129,9 @@ Game.prototype.displayScore = function() {
 
 }
 
-trippyBaclground.img.onload = updateCanvas;
+
+
+
+
+
+
