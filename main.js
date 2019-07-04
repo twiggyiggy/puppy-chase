@@ -22,15 +22,16 @@ function main() {
 
   function createGameScreen() {
     var gameScreen = buildDom(`
-      <section class="canvas-container">
+      <section id="score-life">
+        <p id="global-score">Score: 432</p>
+        <p id="lives-left">Lives left: 4</p>
+      </section>
+      <section>
         <canvas width="500" height="500"></canvas>
       </section>
     `)
-  
-    var canvasContainer = gameScreen.querySelector('.canvas-container');
+
     var canvasElement = gameScreen.querySelector('canvas');
-    canvasElement.width = canvasContainer.offsetWidth
-    canvasElement.height = canvasContainer.offsetHeight
     var gameInstance = new Game(canvasElement);
 
     gameInstance.gameOverCallback(createGameOverScreen);
@@ -52,7 +53,7 @@ function main() {
       <section class="game-over-screen">
         <h1>Game Over, the puppies are gone!</h1>
         <button>Back to Main Menu</button>
-      </section>  
+      </section>
     `);
     var backToMainButton = gameOverScreen.querySelector('button');
     backToMainButton.addEventListener('click', createSplashScreen);

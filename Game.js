@@ -2,18 +2,21 @@
 
 function Game(canvas) {
   this.player = null; // why null?
+  // this.trippyBackground = null;
   this.enemies = [];
   this.puppies = [];
   this.isGameOver = false;
   this.canvas = canvas;
+  this.score = 0;
   this.ctx = this.canvas.getContext('2d');
   this.onGameOver = null;
-  this.score = 0;
 }; 
 
 Game.prototype.startGame = function() {
   // initialise a player and enemies and puppies
+  this.trippyBackground = new trippyBackground(this.canvas);
   this.player = new Player(this.canvas);
+
 
   var loop = () => {
 
@@ -44,6 +47,7 @@ Game.prototype.startGame = function() {
 
 
 Game.prototype.update = function() {
+  this.trippyBackground.move();
   this.player.move();
   this.enemies.forEach(function(enemy) {
     enemy.move();
@@ -59,14 +63,16 @@ Game.prototype.clear = function() {
 
 
 Game.prototype.draw = function() {
+  this.trippyBackground.draw();
   this.player.draw();
   this.enemies.forEach(function(enemy) {
-    enemy.draw();
+  enemy.draw();
   })
   this.puppies.forEach(function(puppy) {
     puppy.draw();
   })
 };
+
 Game.prototype.checkCollisionSides = function(player, fallingElement) {
   var topBottom = player.y <= fallingElement.y + fallingElement.width;
   var rightLeft = player.x + player.width >= fallingElement.x;
@@ -75,9 +81,11 @@ Game.prototype.checkCollisionSides = function(player, fallingElement) {
   return topBottom && rightLeft && leftRight && bottomTop;
 }
 
-
 Game.prototype.checkCollisionEnemy = function() { // declarar antes para DRY?
   this.enemies.forEach((fallingElement, index) => {
+
+    var livesLeft = document.querySelector('#lives-left');
+    livesLeft.innerHTML = 'Lives left: ' + this.player.lives;
 
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.enemies.splice(index, 1);
@@ -93,6 +101,9 @@ Game.prototype.checkCollisionEnemy = function() { // declarar antes para DRY?
 Game.prototype.checkCollisionPuppy = function() {
   this.puppies.forEach((fallingElement, index) => {
 
+    var globalScore = document.querySelector('#global-score');
+    globalScore.innerHTML = 'Score: ' + this.score;
+
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.puppies.splice(index, 1);
       this.score += 100;
@@ -105,13 +116,8 @@ Game.prototype.gameOverCallback = function(callback) {
   this.onGameOver = callback;
 };
 
+Game.prototype.displayScore = function() {
 
-/*
-Game.prototype.checkLives = function() {
+}
 
-};
-
-
-
-
-*/
+trippyBaclground.img.onload = updateCanvas;
