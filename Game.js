@@ -109,7 +109,7 @@ Game.prototype.checkCollisionEnemy = function() { // declarar antes para DRY?
       setTimeout(() => {
         this.player.color = 'blue';
       }, 100);
-      console.log(`Lives left: ${this.player.lives}`);
+      //console.log(`Lives left: ${this.player.lives}`);
     if(this.player.lives === 0) {
         this.isGameOver = true;
       }
@@ -126,7 +126,7 @@ Game.prototype.checkCollisionPuppy = function() {
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.puppies.splice(index, 1);
       this.score += 15;
-      console.log(`Score: ${this.score}`);
+      //console.log(`Score: ${this.score}`);
       }
   })
 }

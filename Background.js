@@ -2,7 +2,7 @@
 
 function trippyBackground(canvas) {
   this.canvas = canvas;
-  this.ctx = this.canvas.getContext('2d');
+  this.ctx = this.canvas.getContext('2d'); //quitar this?
   this.x = 0;
   this.y = 0;
   this.speed = -8;
@@ -21,9 +21,9 @@ trippyBackground.prototype.move = function() {
 
 trippyBackground.prototype.draw = function() {
   this.ctx.drawImage(this.img, this.x, this.y, this.img.width, this.img.height); 
-  if (this.speed < 0) {
-    this.ctx.drawImage(this.img, 0, this.y + this.img.height);
-  }
+  //if (this.speed < 0) {
+  this.ctx.drawImage(this.img, 0, this.y + this.img.height);
+  //}
 }
 
 
