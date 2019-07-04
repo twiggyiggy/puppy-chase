@@ -27,7 +27,7 @@ function main() {
         <p id="lives-left">Lives left: 4</p>
       </section>
       <section>
-        <canvas width="676" height="600"></canvas>
+        <canvas width="600" height="600"></canvas>
       </section>
     `)
 
@@ -59,6 +59,31 @@ function main() {
     var backToMainButton = gameOverScreen.querySelector('button');
     backToMainButton.addEventListener('click', createSplashScreen);
   };
+
+  function createInstructionsScreen() {
+    var instructionsScreen = buildDom(`
+      <section>
+        <div id="container">
+          <h1>How to play</h1>
+          <h2>After a long day on set, nothing brings more joy to the famous actor Shia Labeouf than chasing cute puppies around the park. Help him pet as many as possible while avoiding nasty chihuahuas!
+          <section class="game-elements>
+            <article class="game-element">
+              <img>
+              <p>Move around using left and right arrows</p>
+            </article class="game-element">
+            <article>
+              <img>
+              <p>Don't let these yappy little rats bite you</p>
+            </article class="game-element">
+            <article>
+              <img>
+              <p>Objective: pet the puppies</p>
+            </article>
+          </section>
+        </div>
+      </section>
+    `)
+  }
 
   createSplashScreen();
 };

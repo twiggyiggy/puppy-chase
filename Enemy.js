@@ -3,8 +3,8 @@
 function Enemy(canvas, randomX, imgIndex) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
-  this.height = 40;
-  this.width = 50;
+  this.height = 50;
+  this.width = 70;
   this.direction = 1;
   this.speed = 5;
   this.color = 'red';
@@ -29,7 +29,7 @@ function Puppy(canvas, randomX, imgIndex) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
   this.height = 50;
-  this.width = 40;
+  this.width = 70;
   this.direction = 1;
   this.speed = 4;
   this.color = 'pink';
