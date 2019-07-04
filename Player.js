@@ -9,7 +9,7 @@ function Player(canvas) {
   this.y = this.canvas.height - this.height;
   this.lives = 70;
   this.direction = 0;
-  this.speed = 4;
+  this.speed = 5;
   this.color = 'blue';
   this.img = new Image();
   this.img.src = "./images/shia/shia-hands-down-cartoon.png";

@@ -5,7 +5,7 @@ function trippyBackground(canvas) {
   this.ctx = this.canvas.getContext('2d');
   this.x = 0;
   this.y = 0;
-  this.speed = -1;
+  this.speed = -6;
   //this.velocity = 0;
   //this.direction = 10;
   this.img = new Image();

@@ -20,9 +20,19 @@ Game.prototype.startGame = function() {
 
   var loop = () => {
 
+    var randomNum = Math.round(Math.random() * 2);
+    //console.log(randomNum);
+    if (randomNum === 0) {
+      var imgIndex = 0;
+    } else if (randomNum === 1) {
+      var imgIndex = 1;
+    } else if (randomNum === 2) {
+      var imgIndex = 2;
+    }
+
     if(Math.random() > 0.97) {
       var randomX = Math.random() * this.canvas.width - 10;
-      var newPuppy = new Puppy(this.canvas, randomX);
+      var newPuppy = new Puppy(this.canvas, randomX, imgIndex);
       this.puppies.push(newPuppy);
     }
 
