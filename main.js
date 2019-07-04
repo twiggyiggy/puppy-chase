@@ -27,7 +27,7 @@ function main() {
         <p id="lives-left">Lives left: 4</p>
       </section>
       <section>
-        <canvas width="550" height="550"></canvas>
+        <canvas width="676" height="600"></canvas>
       </section>
     `)
 

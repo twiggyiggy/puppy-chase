@@ -7,7 +7,7 @@ function Player(canvas) {
   this.width = 60;
   this.x = this.canvas.width / 2;
   this.y = this.canvas.height - this.height;
-  this.lives = 70;
+  this.lives = 5;
   this.direction = 0;
   this.speed = 5;
   this.color = 'blue';
