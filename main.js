@@ -3,6 +3,7 @@
 function main() {
   var mainElement = document.querySelector('#site-main');
   var gameSong = new Audio('./sounds/102-palette town theme.mp3');
+  var gameOverSong = new Audio('./sounds/win-game-over-music.mp3');
 
   function buildDom(html) {
     mainElement.innerHTML=html;

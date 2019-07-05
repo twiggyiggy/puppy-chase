@@ -9,7 +9,7 @@ function trippyBackground(canvas) {
   //this.velocity = 0;
   //this.direction = 10;
   this.img = new Image();  
-  this.img.src = "./images/backgrounds/sky-pixelated.jpg";
+  this.img.src = "./images/backgrounds/pink-bg-shia-heads.jpg";
   this.width = this.img.width;  
   this.height = this.img.height;
 }
