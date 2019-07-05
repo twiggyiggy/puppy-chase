@@ -12,6 +12,7 @@ function Game(canvas) {
   this.score = 0;
   this.ctx = this.canvas.getContext('2d');
   this.onGameOver = null;
+  this.difficulty = 3;
 }; 
 
 
@@ -42,7 +43,7 @@ Game.prototype.startGame = function() {
 
     if(Math.random() > 0.97) {
       var randomX = Math.random() * this.canvas.width - 10;
-      var newEnemy = new Enemy(this.canvas, randomX);
+      var newEnemy = new Enemy(this.canvas, randomX, this.difficulty);
       this.enemies.push(newEnemy);
     }
     this.update();
@@ -64,6 +65,7 @@ Game.prototype.startGame = function() {
 Game.prototype.update = function() {
   this.trippyBackground.move();
   this.player.move();
+  this.updatedifficulty();
   this.enemies.forEach(function(enemy) {
     enemy.move();
   })
@@ -71,7 +73,9 @@ Game.prototype.update = function() {
     puppy.move();
   })
 };
-
+Game.prototype.updatedifficulty = function(){
+    this.difficulty = 3 + this.score / 100
+}
 Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
@@ -94,9 +98,9 @@ function changeToBlue() {
 */
 
 Game.prototype.checkCollisionSides = function(player, fallingElement) {
-  var topBottom = player.y <= fallingElement.y + fallingElement.height - 30 ;
-  var rightLeft = player.x + player.width >= fallingElement.x;
-  var leftRight = player.x <= fallingElement.x + fallingElement.width;
+  var topBottom = player.y <= fallingElement.y + fallingElement.height - 10 ;
+  var rightLeft = player.x + player.width >= fallingElement.x + 20;
+  var leftRight = player.x <= fallingElement.x + fallingElement.width - 10;
   var bottomTop = player.y + player.height >= fallingElement.y;
   return topBottom && rightLeft && leftRight && bottomTop;
 }
@@ -131,7 +135,7 @@ Game.prototype.checkCollisionPuppy = function() {
 
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.puppies.splice(index, 1);
-      this.score += 15;
+      this.score += 35;
       }
   })
 }

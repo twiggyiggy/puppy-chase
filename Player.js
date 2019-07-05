@@ -7,9 +7,9 @@ function Player(canvas) {
   this.width = 70;
   this.x = this.canvas.width / 2;
   this.y = this.canvas.height - this.height;
-  this.lives = 20;
+  this.lives = 5;
   this.direction = 0;
-  this.speed = 6;
+  this.speed = 10;
   this.color = 'blue';
   this.img = new Image();
   this.img.src = "./images/shia/shia-hands-down-better.png";

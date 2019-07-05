@@ -1,12 +1,13 @@
 'use strict';
 
-function Enemy(canvas, randomX, imgIndex) {
+function Enemy(canvas, randomX, speed) {
+  console.log(speed);
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
   this.height = 50;
   this.width = 70;
   this.direction = 1;
-  this.speed = 6;
+  this.speed = speed;
   this.color = 'red';
   this.x = randomX;
   this.y = 0;
@@ -36,7 +37,7 @@ function Puppy(canvas, randomX, imgIndex) {
   this.x = randomX;
   this.y = 0;
   this.img = new Image();
-  this.imgPuppyArr = ["./images/dogs/sausage-dog-resized.png", "./images/dogs/dog.png", "./images/dogs/hot-dog.png"];
+  this.imgPuppyArr = ["./images/dogs/sausage-dog-resized.png", "./images/dogs/dog.png", "./images/dogs/beagle-contour.png"];
   this.img.src = this.imgPuppyArr[imgIndex];
 }
 

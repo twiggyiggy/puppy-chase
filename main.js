@@ -79,6 +79,9 @@ function main() {
         gameInstance.player.setDirection(1);
       }
     })
+    document.addEventListener('keyup', function(){
+      gameInstance.player.setDirection(0);
+    })
     //setTimeout(createGameOverScreen, 1000);
   };
 
@@ -113,17 +116,19 @@ function main() {
         <div class="container">
           <h1>How to play</h1>
           <p>After a long day on set, nothing brings more joy to the famous actor Shia Labeouf than chasing cute puppies around the park. Help him pet as many as possible while avoiding nasty chihuahuas!</p>
-          <section class="game-elements>
+          <section class="game-elements">
             <article class="game-element">
-              <img>
+            <img src="./images/arrows-final-small.png">
               <p>Move using left and right arrows</p>
-            </article class="game-element">
-            <article>
-              <img>
+            </article>
+            <article class="game-element">
+              <img src="./images/dogs/angry-chiuaua.png">
               <p>Avoid the yappy little rats</p>
-            </article class="game-element">
-            <article>
-              <img>
+            </article>
+            <article class="game-element">
+              <img src="./images/dogs/sausage-dog-resized.png">
+              <img src="./images/dogs/dog.png">
+              <img src="./images/dogs/beagle-contour.png">
               <p>Pet the puppies!</p>
             </article>
           </section>
