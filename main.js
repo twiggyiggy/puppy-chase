@@ -37,6 +37,7 @@ function main() {
       </screen>
     `)
 
+
     var canvasElement = gameScreen.querySelector('canvas');
     var gameInstance = new Game(canvasElement);
 

@@ -3,8 +3,8 @@
 function Player(canvas) {
   this.canvas = canvas;
   this.ctx = canvas.getContext("2d");
-  this.height = 80;
-  this.width = 60;
+  this.height = 90;
+  this.width = 70;
   this.x = this.canvas.width / 2;
   this.y = this.canvas.height - this.height;
   this.lives = 5;
@@ -12,7 +12,7 @@ function Player(canvas) {
   this.speed = 5;
   this.color = 'blue';
   this.img = new Image();
-  this.img.src = "./images/shia/shia-hands-down-cartoon.png";
+  this.img.src = "./images/shia/shia-hands-down-better.png";
 }
 
 Player.prototype.move = function() {

@@ -12,11 +12,11 @@ function Game(canvas) {
   this.onGameOver = null;
 }; 
 
+
 Game.prototype.startGame = function() {
   // initialise a player and enemies and puppies
   this.trippyBackground = new trippyBackground(this.canvas);
   this.player = new Player(this.canvas);
-
 
   var loop = () => {
 
@@ -49,7 +49,8 @@ Game.prototype.startGame = function() {
     if(!this.isGameOver) {
       window.requestAnimationFrame(loop);
     } else {
-      this.onGameOver();
+      setTimeout(console.log('you died!'), 8000);
+      setTimeout(this.onGameOver(), 8000);
     }
   }
   loop();
@@ -105,13 +106,15 @@ Game.prototype.checkCollisionEnemy = function() { // declarar antes para DRY?
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.enemies.splice(index, 1);
       this.player.lives--;
-      this.player.color = 'white';
+      
+      //barkSound.play();
+      this.player.img.src = "./images/shia/shia-hurt.png"
       setTimeout(() => {
-        this.player.color = 'blue';
+        this.player.img.src = "./images/shia/shia-hands-down-better.png"
       }, 100);
-      //console.log(`Lives left: ${this.player.lives}`);
     if(this.player.lives === 0) {
         this.isGameOver = true;
+        
       }
     }
   })
@@ -126,7 +129,6 @@ Game.prototype.checkCollisionPuppy = function() {
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.puppies.splice(index, 1);
       this.score += 15;
-      //console.log(`Score: ${this.score}`);
       }
   })
 }
