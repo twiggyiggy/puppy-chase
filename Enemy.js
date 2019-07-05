@@ -6,7 +6,7 @@ function Enemy(canvas, randomX, imgIndex) {
   this.height = 50;
   this.width = 70;
   this.direction = 1;
-  this.speed = 5;
+  this.speed = 6;
   this.color = 'red';
   this.x = randomX;
   this.y = 0;

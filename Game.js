@@ -1,5 +1,7 @@
 'use strict';
 
+var barkSound = new Audio('./single dog bark perfecr.mp3')
+
 function Game(canvas) {
   this.player = null; // why null?
   // this.trippyBackground = null;
@@ -13,10 +15,12 @@ function Game(canvas) {
 }; 
 
 
+
 Game.prototype.startGame = function() {
   // initialise a player and enemies and puppies
   this.trippyBackground = new trippyBackground(this.canvas);
   this.player = new Player(this.canvas);
+
 
   var loop = () => {
 
@@ -30,13 +34,13 @@ Game.prototype.startGame = function() {
       var imgIndex = 2;
     }
 
-    if(Math.random() > 0.97) {
+    if(Math.random() > 0.98) {
       var randomX = Math.random() * this.canvas.width - 10;
       var newPuppy = new Puppy(this.canvas, randomX, imgIndex);
       this.puppies.push(newPuppy);
     }
 
-    if(Math.random() > 0.98) {
+    if(Math.random() > 0.97) {
       var randomX = Math.random() * this.canvas.width - 10;
       var newEnemy = new Enemy(this.canvas, randomX);
       this.enemies.push(newEnemy);
@@ -50,7 +54,7 @@ Game.prototype.startGame = function() {
       window.requestAnimationFrame(loop);
     } else {
       setTimeout(console.log('you died!'), 8000);
-      setTimeout(this.onGameOver(), 8000);
+      setTimeout(()=>{this.onGameOver(this.score)}, 500);
     }
   }
   loop();
@@ -90,7 +94,7 @@ function changeToBlue() {
 */
 
 Game.prototype.checkCollisionSides = function(player, fallingElement) {
-  var topBottom = player.y <= fallingElement.y + fallingElement.width;
+  var topBottom = player.y <= fallingElement.y + fallingElement.height - 30 ;
   var rightLeft = player.x + player.width >= fallingElement.x;
   var leftRight = player.x <= fallingElement.x + fallingElement.width;
   var bottomTop = player.y + player.height >= fallingElement.y;
@@ -99,19 +103,18 @@ Game.prototype.checkCollisionSides = function(player, fallingElement) {
 
 Game.prototype.checkCollisionEnemy = function() { // declarar antes para DRY?
   this.enemies.forEach((fallingElement, index) => {
-
+    
     var livesLeft = document.querySelector('#lives-left');
     livesLeft.innerHTML = 'Lives left: ' + this.player.lives;
 
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.enemies.splice(index, 1);
+      barkSound.play();
       this.player.lives--;
-      
-      //barkSound.play();
       this.player.img.src = "./images/shia/shia-hurt.png"
       setTimeout(() => {
         this.player.img.src = "./images/shia/shia-hands-down-better.png"
-      }, 100);
+      }, 300);
     if(this.player.lives === 0) {
         this.isGameOver = true;
         

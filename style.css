@@ -21,7 +21,7 @@ body {
   color: #111;
   font-family: 'Press Start 2P', Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 250%;
+  line-height: 200%;
 }
 
 h1 {
@@ -44,12 +44,44 @@ h2 {
   margin: 10px;
 }
 
-.game-over-screen h3 {
-  color:#0C6685
+.game-over-screen h3, p {
+  color:#0C6685;
+}
+
+p {
+  margin: 0;
+  /*font-size: 12px;*/
 }
 
 .game-over-screen h2 {
-  color: #00BFFF
+  color: #00BFFF;
+}
+
+.instructions-screen h1, h2 {
+  margin: 10px;
+}
+
+.instructions-screen .container {
+  width: 850px;;
+  height: 550px;
+}
+
+.game-elements {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+.game-element {
+  border: 1px solid white;
+  background-color: rgba(255,255,255,0.5);
+  display: flex;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
 }
 
 
@@ -82,7 +114,7 @@ h2 {
   background-repeat: no-repeat;
 }
 
-.game-over-screen {
+.game-over-screen, .instructions-screen {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -100,6 +132,10 @@ h2 {
   align-self: center;
   margin: auto 0;
   animation: blinker 1.5s linear infinite;
+}
+
+.instructions-screen button {
+  margin: 20px;
 }
 
 .container {

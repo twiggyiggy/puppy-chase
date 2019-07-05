@@ -2,6 +2,7 @@
 
 function main() {
   var mainElement = document.querySelector('#site-main');
+  var gameSong = new Audio('./sounds/102-palette town theme.mp3');
 
   function buildDom(html) {
     mainElement.innerHTML=html;
@@ -9,6 +10,16 @@ function main() {
   };
 
   function createSplashScreen() {
+    setTimeout(() => {
+      gameSong.pause();
+      gameSong.currentTime = 0;
+      //var gameSong = new Audio('./sounds/102-palette town theme.mp3');
+      let playPromise = gameSong.play()
+      if(playPromise !== null){
+        playPromise.catch(() => { gameSong.play() })
+      } 
+    }, 500);
+
     var splashSrceen = buildDom(`
       <section class="splash-screen">
         <div class="container">
@@ -21,10 +32,21 @@ function main() {
     `)  
 
     var startButton = splashSrceen.querySelector('#btn-play');
-    startButton.addEventListener('click', createGameScreen);
+    startButton.addEventListener('click', function() {
+      createGameScreen(gameSong)
+    });
+
+    var howToButton = splashSrceen.querySelector('#btn-instructions');
+    howToButton.addEventListener('click', function() {
+      createInstructionsScreen(gameSong)
+    });
   };
 
   function createGameScreen() {
+    gameSong.pause();
+    gameSong.currentTime = 0;
+    var battleSong = new Audio('./sounds/pokemon-battle-song-[AudioTrimmer.com].mp3')
+    battleSong.play();
     var gameScreen = buildDom(`
       <section class="game-screen">
         <section>
@@ -41,9 +63,13 @@ function main() {
     var canvasElement = gameScreen.querySelector('canvas');
     var gameInstance = new Game(canvasElement);
 
-    gameInstance.gameOverCallback(createGameOverScreen);
+    gameInstance.gameOverCallback(function(score) {
+      createGameOverScreen(battleSong, score)
+    });
 
     gameInstance.startGame();
+
+    
 
     document.addEventListener('keydown', function(event) {
       if(event.key === 'ArrowLeft') {
@@ -56,7 +82,10 @@ function main() {
     //setTimeout(createGameOverScreen, 1000);
   };
 
-  function createGameOverScreen() {
+
+  function createGameOverScreen(battleSong,score) {
+    battleSong.pause();
+    battleSong.currentTime = 0;
     var gameOverScreen = buildDom(`
       <section class="game-over-screen">
         <div class="container">
@@ -71,35 +100,60 @@ function main() {
     backToMainButton.addEventListener('click', createSplashScreen);
 
     var finalScore = gameOverScreen.querySelector('#final-score');
-    finalScore.innerHTML = 'Your score is: ' + this.score;
+    finalScore.innerHTML = 'Your score is: ' + score;
   };
 
   function createInstructionsScreen() {
+    gameSong.pause();
+    gameSong.currentTime = 0;
+    gameSong.play();
+
     var instructionsScreen = buildDom(`
-      <section>
-        <div id="container">
+      <section class="instructions-screen">
+        <div class="container">
           <h1>How to play</h1>
-          <h2>After a long day on set, nothing brings more joy to the famous actor Shia Labeouf than chasing cute puppies around the park. Help him pet as many as possible while avoiding nasty chihuahuas!
+          <p>After a long day on set, nothing brings more joy to the famous actor Shia Labeouf than chasing cute puppies around the park. Help him pet as many as possible while avoiding nasty chihuahuas!</p>
           <section class="game-elements>
             <article class="game-element">
               <img>
-              <p>Move around using left and right arrows</p>
+              <p>Move using left and right arrows</p>
             </article class="game-element">
             <article>
               <img>
-              <p>Don't let these yappy little rats bite you</p>
+              <p>Avoid the yappy little rats</p>
             </article class="game-element">
             <article>
               <img>
-              <p>Objective: pet the puppies</p>
+              <p>Pet the puppies!</p>
             </article>
+          </section>
+          <section class="buttons">
+            <button id="btn-main" class="blink_me">Back to main</button>
+            <button id="btn-play" class="blink_me">Play</button>
           </section>
         </div>
       </section>
     `)
-  }
+
+    var startButton = instructionsScreen.querySelector('#btn-play');
+    startButton.addEventListener('click', function() {
+      createGameScreen()
+    });
+
+    var backToMainButton = instructionsScreen.querySelector('#btn-main');
+    backToMainButton.addEventListener('click', createSplashScreen);
+  };
 
   createSplashScreen();
 };
 
 window.addEventListener('load', main);
+
+
+/*
+    var backToMainButton = instructionsScreen.querySelector('#btn-main');
+    backToMainButton.addEventListener('click', function() {
+      createSplashScreen(gameSong)
+    });
+  };
+  */
