@@ -35,7 +35,7 @@ Game.prototype.startGame = function() {
       var imgIndex = 2;
     }
 
-    if(Math.random() > 0.98) {
+    if(Math.random() > 0.97) {
       var randomX = Math.random() * this.canvas.width - 10;
       var newPuppy = new Puppy(this.canvas, randomX, imgIndex);
       this.puppies.push(newPuppy);
@@ -135,7 +135,7 @@ Game.prototype.checkCollisionPuppy = function() {
 
     if(this.checkCollisionSides(this.player, fallingElement)) {
       this.puppies.splice(index, 1);
-      this.score += 35;
+      this.score += 15;
       }
   })
 }

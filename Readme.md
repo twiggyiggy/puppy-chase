@@ -47,7 +47,5 @@ checkCollisions(), startGame(), clear(), update(), draw()
 Link url
 
 #Git
-URls for the project repo and deploy Link Repo Link Deploy
-
-#Slides
-URls for the project presentation (slides) Link Slides.com
+- Deploy Repo Link
+https://twiggyiggy.github.io/puppy-chase/
